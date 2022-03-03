@@ -1,6 +1,13 @@
 function createListItem(text) {
   const li = document.createElement('li');
   li.innerText = text;
+  li.addEventListener('click', () => {
+    if (li.className) {
+      li.removeAttribute('class');
+    } else {
+      li.className = 'selected';
+    }
+  });
   return li;
 }
 
