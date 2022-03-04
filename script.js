@@ -54,3 +54,14 @@ removeTasks.addEventListener('click', () => {
     list.removeChild(list.firstChild);
   }
 });
+
+const removeCompleted = document.getElementById('remover-finalizados');
+removeCompleted.addEventListener('click', () => {
+  const childrenList = document.getElementById(listaTarefas).children;
+
+  for (let index = 0; index < childrenList.length; index += 1) {
+    if (document.getElementsByClassName('completed')) {
+      document.getElementsByClassName('completed')[0].remove();
+    }
+  }
+});
