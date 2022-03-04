@@ -1,23 +1,34 @@
-function removeSelected() {
+function removeClassSelected() {
   const listItems = document.getElementById('lista-tarefas').children;
   for (let i = 0; i < listItems.length; i += 1) {
-    if (listItems[i].className) {
-      listItems[i].removeAttribute('class');
+    if (listItems[i].className !== 'completed') {
+      listItems[i].classList.remove('selected');
     }
+  }
+}
+
+function clickListener(li) {
+  if (li.classList.contains('selected')) {
+    li.classList.remove('selected');
+  } else {
+    removeClassSelected();
+    li.classList.add('selected');
+  }
+}
+
+function doubleClickListener(li) {
+  if (li.classList.contains('completed')) {
+    li.classList.remove('completed');
+  } else {
+    li.classList.add('completed');
   }
 }
 
 function createListItem(text) {
   const li = document.createElement('li');
   li.innerText = text;
-  li.addEventListener('click', () => {
-    if (li.className === 'selected') {
-      li.removeAttribute('class');
-    } else {
-      removeSelected();
-      li.className = 'selected';
-    }
-  });
+  li.addEventListener('click', () => clickListener(li));
+  li.addEventListener('dblclick', () => doubleClickListener(li));
   return li;
 }
 
